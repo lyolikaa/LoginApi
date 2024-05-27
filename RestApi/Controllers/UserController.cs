@@ -18,11 +18,11 @@ namespace RestApi.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequest model)
+        public async Task<IActionResult> Login([FromBody] LoginRequest model)
         {
-            var user = _userService.Authenticate(model.Email, model.Password);
+            var user = await _userService.Authenticate(model.Email, model.Password);
 
-            if (user == null)
+               if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
             return Ok(new

@@ -4,7 +4,7 @@ namespace RestApi.Services;
 
 public interface IUserService
 {
-    User Authenticate(string username, string password);
+    Task<User> Authenticate(string username, string password);
 }
 
 public class UserService : IUserService
